@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    GameObject playerObject;
+    EnemyInstantiator ei;
 
-    public GameObject enemyPrefab;
+    GameObject playerObject;
 
     public bool isGameOver = false;
     public float gameOverTimer = 0f;
@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        ei = GetComponent<EnemyInstantiator>();
         playerObject = Object.FindFirstObjectByType<PlayerMovement>().gameObject;
     }
 
@@ -52,7 +53,7 @@ public void GameOver()
 
     public void spawnEnemy()
     {
-        GameObject inst = Instantiate(enemyPrefab, RandomPointOnNavMesh(), Quaternion.identity);
+        ei.SpawnNewEnemy(Random.Range(1,3), RandomPointOnNavMesh());
     }
 
     public Vector3 RandomPointOnNavMesh()

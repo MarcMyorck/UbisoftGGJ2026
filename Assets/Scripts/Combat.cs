@@ -113,12 +113,23 @@ public class Combat : MonoBehaviour
                     new AttackComboStruct("m", 0f, 1.67f)
                 };
                 break;
-            case "Knight":
+            case "Bat":
                 combo = new AttackComboStruct[]{
-                    new AttackComboStruct("r", 0f, 2.0f),
-                    new AttackComboStruct("l", 0.5f, 3.0f),
-                    new AttackComboStruct("r", 0.25f, 2.5f)
+                    new AttackComboStruct("m", 0f, 2.0f)
                 }; 
+                break;
+            case "Tom":
+                combo = new AttackComboStruct[]{
+                    new AttackComboStruct("m", 0f, 2.0f),
+                    new AttackComboStruct("m", 0f, 2.0f),
+                    new AttackComboStruct("m", 0f, 2.0f)
+                };
+                break;
+            case "Tourabe":
+                combo = new AttackComboStruct[]{
+                    new AttackComboStruct("m", 0f, 2.0f),
+                    new AttackComboStruct("m", 0f, 2.0f)
+                };
                 break;
         }
     }

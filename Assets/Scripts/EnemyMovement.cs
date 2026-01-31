@@ -10,7 +10,7 @@ public class EnemyMovement : MonoBehaviour
     Animator enemyAnimator;
 
     public float chaseDistance = 1.5f;
-    public float attackDelay = 0.5f;
+    public float attackDelay = 0.2f;
     public float attackTimer = 0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
