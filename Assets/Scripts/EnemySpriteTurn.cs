@@ -11,6 +11,6 @@ public class EnemySpriteTurn : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.rotation = Quaternion.Inverse(transform.parent.rotation) * transform.rotation;
+        transform.rotation = Quaternion.identity;
     }
 }

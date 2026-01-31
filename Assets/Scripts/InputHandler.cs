@@ -11,6 +11,8 @@ public class InputHandler : MonoBehaviour
     SpriteRenderer sr;
     GameManager gm;
 
+    Animator playerAnimator;
+
     InputAction moveAction;
     InputAction dashAction;
     InputAction attackAction;
@@ -28,6 +30,8 @@ public class InputHandler : MonoBehaviour
         ph = GetComponent<PickupHandler>();
         sr = GameObject.Find("Player/Sprite").GetComponent<SpriteRenderer>();
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        playerAnimator = GameObject.Find("Player/Sprite").GetComponent<Animator>();
 
         moveAction = InputSystem.actions.FindAction("Move");
         dashAction = InputSystem.actions.FindAction("Dash");
@@ -61,6 +65,11 @@ public class InputHandler : MonoBehaviour
                     sr.flipX = false;
                 }
             }
+            playerAnimator.SetBool("IsWalking", true);
+        } 
+        else
+        {
+            playerAnimator.SetBool("IsWalking", false);
         }
 
         // Combat

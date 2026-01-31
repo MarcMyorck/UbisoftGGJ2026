@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
             gameOverTimer += Time.deltaTime;
             if (gameOverTimer >= gameOverDelay)
             {
-                SceneManager.LoadScene("GameOverScene");
+                SceneManager.LoadScene("MainMenuScene");
             }
         }
 

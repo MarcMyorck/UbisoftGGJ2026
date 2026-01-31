@@ -167,6 +167,7 @@ GameObject:
   - component: {fileID: 8071638981489529379}
   - component: {fileID: 3257669459298062726}
   - component: {fileID: 6092089254099616350}
+  - component: {fileID: 3011215096004565717}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -184,7 +185,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.29, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1423956782757871899}
@@ -284,6 +285,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3011215096004565717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3747109038619062039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f4cc894a08ce094c99eb900c8d9eaf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySpriteTurn
 --- !u!1 &4349054019516020775
 GameObject:
   m_ObjectHideFlags: 0

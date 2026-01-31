@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c6022b4e6c5978645b02b294078867f0
+guid: 28b8f4933f413124bb713c53b3a8320b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: atem-spritesheet-idle_0
+      name: atem-spritesheet-flying_0
       rect:
         serializedVersion: 2
         x: 0
@@ -112,14 +112,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f030d1d1f9e58a441b9722c1e88a0eee
-      internalID: -1067390985
+      spriteID: 808dab1e79448fb4ba9fc4514adba371
+      internalID: -1112185508
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: atem-spritesheet-idle_1
+      name: atem-spritesheet-flying_1
       rect:
         serializedVersion: 2
         x: 800
@@ -134,14 +134,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 80047dda5355226419b8626af4570b8b
-      internalID: 967458759
+      spriteID: 390e1fc3f78d11a42baf7ce11f75c0cb
+      internalID: -1639117469
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: atem-spritesheet-idle_2
+      name: atem-spritesheet-flying_2
       rect:
         serializedVersion: 2
         x: 1600
@@ -156,14 +156,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee11e7bd712ddc041b0e8927ac86d7c8
-      internalID: -585929018
+      spriteID: 85bc488d84134d549818d35f48c31097
+      internalID: -1323131999
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: atem-spritesheet-idle_3
+      name: atem-spritesheet-flying_3
       rect:
         serializedVersion: 2
         x: 2400
@@ -178,14 +178,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87add1d950f1aa0429c0af40f6484890
-      internalID: -1331278720
+      spriteID: 65ba2f40df6ac074dbd72b5b442ccca3
+      internalID: 409394806
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: atem-spritesheet-idle_4
+      name: atem-spritesheet-flying_4
       rect:
         serializedVersion: 2
         x: 0
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 428f11d80f27d734786ad1a10d06113a
-      internalID: -588997017
+      spriteID: 7edfd4bd5d064d6429be37df5830da1b
+      internalID: -1632687055
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: atem-spritesheet-idle_5
+      name: atem-spritesheet-flying_5
       rect:
         serializedVersion: 2
         x: 800
@@ -222,14 +222,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bfbd5f030385ed44d98783f2abfee8a3
-      internalID: -2082088708
+      spriteID: ada43c38c0006d3499557c92258afe2d
+      internalID: 1871528769
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: atem-spritesheet-idle_6
+      name: atem-spritesheet-flying_6
       rect:
         serializedVersion: 2
         x: 1600
@@ -244,14 +244,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4741a675baec427449854de40d5a3a62
-      internalID: -1191142533
+      spriteID: 33aa44f89e756de4d9a6a915c0f3e229
+      internalID: 1413417139
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: atem-spritesheet-idle_7
+      name: atem-spritesheet-flying_7
       rect:
         serializedVersion: 2
         x: 2400
@@ -266,14 +266,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b0a8ec630e78fb45b86067015e87438
-      internalID: 456326643
+      spriteID: 27a58cf0dae19d04d9a6b8d813693640
+      internalID: 1086976479
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: atem-spritesheet-idle_8
+      name: atem-spritesheet-flying_8
       rect:
         serializedVersion: 2
         x: 0
@@ -288,14 +288,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 74b1d9dbd2efff444803932a80cde06a
-      internalID: 887404538
+      spriteID: 0680231d1a989414395f714aab139ac9
+      internalID: -1553203076
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: atem-spritesheet-idle_9
+      name: atem-spritesheet-flying_9
       rect:
         serializedVersion: 2
         x: 800
@@ -310,8 +310,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e6d0c810b9a0db4699abfb8d604bf68
-      internalID: -704114775
+      spriteID: b5cca3e20b74a7f43b5d1706a5b72fa0
+      internalID: 559991242
       vertices: []
       indices: 
       edges: []
@@ -320,7 +320,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 9c6c0f7eb5e30244ba581d7e1f85954e
+    spriteID: 03c2a8e40bcc9054d9305522f3fc0f95
     internalID: 0
     vertices: []
     indices: 
@@ -332,16 +332,16 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":800.0,"y":800.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      atem-spritesheet-idle_0: -1067390985
-      atem-spritesheet-idle_1: 967458759
-      atem-spritesheet-idle_2: -585929018
-      atem-spritesheet-idle_3: -1331278720
-      atem-spritesheet-idle_4: -588997017
-      atem-spritesheet-idle_5: -2082088708
-      atem-spritesheet-idle_6: -1191142533
-      atem-spritesheet-idle_7: 456326643
-      atem-spritesheet-idle_8: 887404538
-      atem-spritesheet-idle_9: -704114775
+      atem-spritesheet-flying_0: -1112185508
+      atem-spritesheet-flying_1: -1639117469
+      atem-spritesheet-flying_2: -1323131999
+      atem-spritesheet-flying_3: 409394806
+      atem-spritesheet-flying_4: -1632687055
+      atem-spritesheet-flying_5: 1871528769
+      atem-spritesheet-flying_6: 1413417139
+      atem-spritesheet-flying_7: 1086976479
+      atem-spritesheet-flying_8: -1553203076
+      atem-spritesheet-flying_9: 559991242
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
