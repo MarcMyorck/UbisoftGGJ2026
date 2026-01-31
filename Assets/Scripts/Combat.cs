@@ -110,7 +110,7 @@ public class Combat : MonoBehaviour
         {
             case "Ghost":
                 combo = new AttackComboStruct[]{
-                    new AttackComboStruct("m", 0f, 1.0f)
+                    new AttackComboStruct("m", 0f, 1.67f)
                 };
                 break;
             case "Knight":

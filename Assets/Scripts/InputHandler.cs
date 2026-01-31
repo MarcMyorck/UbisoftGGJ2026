@@ -19,6 +19,7 @@ public class InputHandler : MonoBehaviour
     InputAction interact1Action;
     InputAction interact2Action;
 
+    public bool isInteracting = false;
     public float interactTimer = 0f;
     public float interactDelay = 3.0f;
 
@@ -43,7 +44,7 @@ public class InputHandler : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (gm.isGameOver) 
+        if (gm.isGameOver)
         {
             return;
         }
@@ -53,7 +54,7 @@ public class InputHandler : MonoBehaviour
         // Movement
         if (moveAction.IsPressed() && interactTimer == 0f)
         {
-            pm.MoveHorizontally(moveValue, dashAction.IsPressed());
+            pm.MoveHorizontally(moveValue, (c.isAttacking | isInteracting) ? false : dashAction.IsPressed());
             if (moveValue.x > 0)
             {
                 sr.flipX = true;
@@ -66,52 +67,76 @@ public class InputHandler : MonoBehaviour
                 }
             }
             playerAnimator.SetBool("IsWalking", true);
-        } 
+        }
         else
         {
             playerAnimator.SetBool("IsWalking", false);
         }
 
-        if (pm.currentDashCooldown <= pm.dashLength)
+        if (pm.isDashing)
         {
             playerAnimator.SetBool("IsDashing", true);
-        } 
+        }
         else
         {
             playerAnimator.SetBool("IsDashing", false);
         }
 
         // Combat
-        if (attackAction.IsPressed() && interactTimer == 0f)
+        if (!pm.isDashing && !isInteracting && attackAction.IsPressed() && interactTimer == 0f)
         {
             c.StartAttack(pm.currentDirection);
         }
 
-        // Interact
-        if (ph.inside?.Any() == true)
+        if (c.isAttacking)
         {
-            if (interact1Action.IsPressed() && interact2Action.IsPressed())
+            playerAnimator.SetBool("IsAttacking", true);
+        }
+        else
+        {
+            playerAnimator.SetBool("IsAttacking", false);
+        }
+
+        // Interact
+        if (!pm.isDashing && !c.isAttacking)
+        { 
+            if (ph.inside?.Any() == true)
             {
-                if (interactTimer == 0f)
+                if (interact1Action.IsPressed() && interact2Action.IsPressed())
                 {
-                    Gamepad.current.SetMotorSpeeds(2f, 2f);
-                    Object.FindFirstObjectByType<CameraShake>().Shake();
+                    if (interactTimer == 0f)
+                    {
+                        isInteracting = true;
+                        Gamepad.current.SetMotorSpeeds(2f, 2f);
+                        Object.FindFirstObjectByType<CameraShake>().Shake();
+                    }
+                    interactTimer += Time.deltaTime;
+                    if (interactTimer >= interactDelay)
+                    {
+                        isInteracting = false;
+                        Gamepad.current.SetMotorSpeeds(0f, 0f);
+                        ph.PickupCombo(ph.GetClosest(gameObject));
+                        interactTimer = 0f;
+                    }
                 }
-                interactTimer += Time.deltaTime;
-                if (interactTimer >= interactDelay)
+
+                if (!(interact1Action.IsPressed() && interact2Action.IsPressed()) && interactTimer > 0f)
                 {
+                    isInteracting = false;
                     Gamepad.current.SetMotorSpeeds(0f, 0f);
-                    ph.PickupCombo(ph.GetClosest(gameObject));
+                    Object.FindFirstObjectByType<CameraShake>().StopShake();
                     interactTimer = 0f;
                 }
             }
+        }
 
-            if (!(interact1Action.IsPressed() && interact2Action.IsPressed()) && interactTimer > 0f)
-            {
-                Gamepad.current.SetMotorSpeeds(0f, 0f);
-                Object.FindFirstObjectByType<CameraShake>().StopShake();
-                interactTimer = 0f;
-            }
+        if (isInteracting)
+        {
+            playerAnimator.SetBool("IsInteracting", true);
+        }
+        else
+        {
+            playerAnimator.SetBool("IsInteracting", false);
         }
     }
 }

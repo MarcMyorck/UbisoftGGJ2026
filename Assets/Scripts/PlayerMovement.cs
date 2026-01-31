@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float currentMoveSpeed = 10.0f;
     public float moveSpeed = 10.0f;
+    public bool isDashing = false;
     public float dashSpeedMultiplier = 2.0f;
     public float dashLength = 0.5f;
     public float currentDashCooldown = 2.0f;
@@ -29,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
             if (currentDashCooldown > dashLength)
             {
                 currentMoveSpeed = moveSpeed;
+                isDashing = false;
             }
         }
     }
@@ -41,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         {
             currentMoveSpeed = moveSpeed * dashSpeedMultiplier;
             currentDashCooldown = 0f;
+            isDashing = true;
         }
 
         Vector3 direction = new Vector3(values.x, 0, values.y);

@@ -2267,8 +2267,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   moveSpeed: 10
+  isDashing: 0
   dashSpeedMultiplier: 2
   dashLength: 0.5
+  currentDashCooldown: 2
   dashCooldown: 2
   currentDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &1463872959
@@ -2283,6 +2285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed780a72eca9c4a45896d6d6e2b3325d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputHandler
+  isInteracting: 0
   interactTimer: 0
   interactDelay: 3
 --- !u!143 &1463872960
