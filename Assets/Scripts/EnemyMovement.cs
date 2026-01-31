@@ -7,6 +7,8 @@ public class EnemyMovement : MonoBehaviour
     public GameObject player;
     public NavMeshAgent agent;
 
+    Animator enemyAnimator;
+
     public float chaseDistance = 1.5f;
     public float attackDelay = 0.5f;
     public float attackTimer = 0f;
@@ -17,6 +19,8 @@ public class EnemyMovement : MonoBehaviour
         c = GetComponent<Combat>();
         player = GameObject.Find("Player");
         agent = GetComponent<NavMeshAgent>();
+
+        enemyAnimator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -24,6 +28,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (!c.isAttacking)
         {
+            enemyAnimator.SetBool("IsAttacking", false);
             if (Vector3.Distance(player.transform.position, transform.position) > chaseDistance)
             {
                 agent.destination = player.transform.position;
@@ -35,6 +40,7 @@ public class EnemyMovement : MonoBehaviour
                 attackTimer += Time.deltaTime;
                 if (attackTimer >= attackDelay)
                 {
+                    enemyAnimator.SetBool("IsAttacking", true);
                     c.StartAttack(transform.forward);
                     attackTimer = 0f;
                 }
