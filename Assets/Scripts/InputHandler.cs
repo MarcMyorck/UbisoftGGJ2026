@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,11 +8,17 @@ public class InputHandler : MonoBehaviour
     PlayerMovement pm;
     Combat c;
     PickupHandler ph;
+    SpriteRenderer sr;
+    GameManager gm;
 
     InputAction moveAction;
-    InputAction jumpAction;
+    InputAction dashAction;
     InputAction attackAction;
-    InputAction interactAction;
+    InputAction interact1Action;
+    InputAction interact2Action;
+
+    public float interactTimer = 0f;
+    public float interactDelay = 3.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,34 +26,71 @@ public class InputHandler : MonoBehaviour
         pm = GetComponent<PlayerMovement>();
         c = GetComponent<Combat>();
         ph = GetComponent<PickupHandler>();
+        sr = GameObject.Find("Player/Sprite").GetComponent<SpriteRenderer>();
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         moveAction = InputSystem.actions.FindAction("Move");
-        jumpAction = InputSystem.actions.FindAction("Jump");
+        dashAction = InputSystem.actions.FindAction("Dash");
         attackAction = InputSystem.actions.FindAction("Attack");
-        interactAction = InputSystem.actions.FindAction("Interact");
+        interact1Action = InputSystem.actions.FindAction("Interact1");
+        interact2Action = InputSystem.actions.FindAction("Interact2");
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (gm.isGameOver) 
+        {
+            return;
+        }
+
         Vector2 moveValue = moveAction.ReadValue<Vector2>();
 
         // Movement
-        if (moveAction.IsPressed())
+        if (moveAction.IsPressed() && interactTimer == 0f)
         {
-            pm.MoveHorizontally(moveValue, jumpAction.IsPressed());
+            pm.MoveHorizontally(moveValue, dashAction.IsPressed());
+            if (moveValue.x > 0)
+            {
+                sr.flipX = true;
+            }
+            else
+            {
+                if (moveValue.x < 0)
+                {
+                    sr.flipX = false;
+                }
+            }
         }
 
         // Combat
-        if (attackAction.IsPressed())
+        if (attackAction.IsPressed() && interactTimer == 0f)
         {
             c.StartAttack(pm.currentDirection);
         }
 
         // Interact
-        if (interactAction.IsPressed())
+        if (ph.inside?.Any() == true)
         {
-            ph.PickupCombo(ph.GetClosest(gameObject));
+            if (interact1Action.IsPressed() && interact2Action.IsPressed())
+            {
+                if (interactTimer == 0f)
+                {
+                    Object.FindFirstObjectByType<CameraShake>().Shake();
+                }
+                interactTimer += Time.deltaTime;
+                if (interactTimer >= interactDelay)
+                {
+                    ph.PickupCombo(ph.GetClosest(gameObject));
+                    interactTimer = 0f;
+                }
+            }
+
+            if (!(interact1Action.IsPressed() && interact2Action.IsPressed()) && interactTimer > 0f)
+            {
+                Object.FindFirstObjectByType<CameraShake>().StopShake();
+                interactTimer = 0f;
+            }
         }
     }
 }

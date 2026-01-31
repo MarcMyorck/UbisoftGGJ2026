@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    public GameManager gm;
+
     public GameObject pickupPrefab;
 
     public float currentHealth = 1.0f;
@@ -12,7 +14,7 @@ public class Health : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        gm = Object.FindFirstObjectByType<GameManager>();
     }
 
     // Update is called once per frame
@@ -37,7 +39,7 @@ public class Health : MonoBehaviour
             {
                 if (tag == "Player")
                 {
-                    //TODO
+                    gm.GameOver();
                 }
                 else
                 {

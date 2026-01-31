@@ -48,6 +48,7 @@ public class PickupHandler : MonoBehaviour
     {
         gameObject.GetComponent<Combat>().comboName = pickup.GetComponent<Pickup>().comboName;
         gameObject.GetComponent<Combat>().AssignAttackCombo();
+        inside.Remove(pickup);
         Destroy(pickup);
     }
 }
