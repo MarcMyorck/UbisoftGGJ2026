@@ -2,7 +2,7 @@ using UnityEngine;
 
 public struct AttackComboStruct
 {
-    public string endpoint; //l for left, r for right
+    public string endpoint; //l for right to left, r for left to right, m for middle only
     public float waitTime; //How long to wait before using this attack
     public float attackSpeed; //Attack Speed for this attack
 

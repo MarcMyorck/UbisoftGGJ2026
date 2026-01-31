@@ -76,11 +76,13 @@ public class InputHandler : MonoBehaviour
             {
                 if (interactTimer == 0f)
                 {
+                    Gamepad.current.SetMotorSpeeds(2f, 2f);
                     Object.FindFirstObjectByType<CameraShake>().Shake();
                 }
                 interactTimer += Time.deltaTime;
                 if (interactTimer >= interactDelay)
                 {
+                    Gamepad.current.SetMotorSpeeds(0f, 0f);
                     ph.PickupCombo(ph.GetClosest(gameObject));
                     interactTimer = 0f;
                 }
@@ -88,6 +90,7 @@ public class InputHandler : MonoBehaviour
 
             if (!(interact1Action.IsPressed() && interact2Action.IsPressed()) && interactTimer > 0f)
             {
+                Gamepad.current.SetMotorSpeeds(0f, 0f);
                 Object.FindFirstObjectByType<CameraShake>().StopShake();
                 interactTimer = 0f;
             }

@@ -3,6 +3,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public GameManager gm;
+    public GameObject player;
 
     public GameObject pickupPrefab;
 
@@ -15,6 +16,7 @@ public class Health : MonoBehaviour
     void Start()
     {
         gm = Object.FindFirstObjectByType<GameManager>();
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
@@ -39,7 +41,17 @@ public class Health : MonoBehaviour
             {
                 if (tag == "Player")
                 {
-                    gm.GameOver();
+                    if (player.GetComponent<Combat>().comboName != "Ghost")
+                    {
+                        player.GetComponent<Combat>().comboName = "Ghost";
+                        player.GetComponent<Combat>().AssignAttackCombo();
+                        currentHealth = maxHealth;
+                        invincibilityTimer = 0f;
+                    }
+                    else
+                    {
+                        gm.GameOver();
+                    }
                 }
                 else
                 {

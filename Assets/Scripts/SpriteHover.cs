@@ -3,7 +3,7 @@ using UnityEngine;
 public class SpriteHover : MonoBehaviour
 {
     public float amplitude = 0.2f; // how high it moves
-    public float frequency = 2f; // how fast it moves
+    public float frequency = 1f; // how fast it moves
     private Vector3 startPos; 
 
     void Start() 

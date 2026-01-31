@@ -44,6 +44,13 @@ public class Combat : MonoBehaviour
                     {
                         curvedDir = Vector3.Slerp(rotated45left, rotated45right, attackTime);
                     }
+                    else
+                    {
+                        if (combo[currentComboStep].endpoint == "m")
+                        {
+                            curvedDir = Vector3.Slerp(rotated45left, rotated45right, 0.5f);
+                        }
+                    }
                 }
 
                 // Move object along that curved direction
@@ -103,7 +110,7 @@ public class Combat : MonoBehaviour
         {
             case "Ghost":
                 combo = new AttackComboStruct[]{
-                    new AttackComboStruct("r", 0f, 2.0f)
+                    new AttackComboStruct("m", 0f, 1.0f)
                 };
                 break;
             case "Knight":
