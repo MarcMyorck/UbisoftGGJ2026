@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 10.0f;
     public float dashSpeedMultiplier = 2.0f;
     public float dashLength = 0.5f;
-    private float currentDashCooldown = 2.0f;
+    public float currentDashCooldown = 2.0f;
     public float dashCooldown = 2.0f;
     public Vector3 currentDirection = Vector3.zero;
 

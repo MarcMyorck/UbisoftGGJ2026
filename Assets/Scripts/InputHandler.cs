@@ -72,6 +72,15 @@ public class InputHandler : MonoBehaviour
             playerAnimator.SetBool("IsWalking", false);
         }
 
+        if (pm.currentDashCooldown <= pm.dashLength)
+        {
+            playerAnimator.SetBool("IsDashing", true);
+        } 
+        else
+        {
+            playerAnimator.SetBool("IsDashing", false);
+        }
+
         // Combat
         if (attackAction.IsPressed() && interactTimer == 0f)
         {
