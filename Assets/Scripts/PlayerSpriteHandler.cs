@@ -40,6 +40,7 @@ public class PlayerSpriteHandler : MonoBehaviour
             case ("Ghost"):
                 sr.sprite = s1;
                 a.runtimeAnimatorController = anim1 as RuntimeAnimatorController;
+                a.SetBool("IsInteractingBackwards", true);
                 GameObject.Find("Player/Sprite").transform.position = new Vector3(GameObject.Find("Player/Sprite").transform.position.x, 1.4f, GameObject.Find("Player/Sprite").transform.position.z); GameObject.Find("Player/Sprite").transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
                 break;
             case ("Bat"):

@@ -4,6 +4,8 @@ public class Health : MonoBehaviour
 {
     public GameManager gm;
     public GameObject player;
+    public PickupHandler ph;
+    public InputHandler ih;
 
     public GameObject pickupPrefab;
 
@@ -17,6 +19,8 @@ public class Health : MonoBehaviour
     {
         gm = Object.FindFirstObjectByType<GameManager>();
         player = GameObject.Find("Player");
+        ph = Object.FindFirstObjectByType<PickupHandler>();
+        ih = Object.FindFirstObjectByType<InputHandler>();  
     }
 
     // Update is called once per frame
@@ -44,9 +48,10 @@ public class Health : MonoBehaviour
                 {
                     if (player.GetComponent<Combat>().comboName != "Ghost")
                     {
-                        player.GetComponent<Combat>().comboName = "Ghost";
-                        player.GetComponent<Combat>().AssignAttackCombo();
-                        currentHealth = maxHealth;
+                        ph.RevertCombo();
+                        GameObject.Find("Player/Sprite").GetComponent<Animator>().SetBool("IsInteractingBackwards", true);
+                        GameObject.Find("Player/Sprite").transform.position = new Vector3(GameObject.Find("Player/Sprite").transform.position.x, 2.3f, GameObject.Find("Player/Sprite").transform.position.z);
+                        ih.interactCooldownTimer = 0f;
                         invincibilityTimer = 0f;
                     }
                     else

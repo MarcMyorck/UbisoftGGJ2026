@@ -117,7 +117,6 @@ public class InputHandler : MonoBehaviour
             if (interact1Action.IsPressed() && interact2Action.IsPressed() && c.comboName != "Ghost")
             {
                 ph.RevertCombo();
-                playerAnimator.SetBool("IsInteractingBackwards", true);
                 interactCooldownTimer = 0f;
                 GameObject.Find("Player/Sprite").transform.position = new Vector3(GameObject.Find("Player/Sprite").transform.position.x, 2.3f, GameObject.Find("Player/Sprite").transform.position.z);
             }
@@ -160,7 +159,7 @@ public class InputHandler : MonoBehaviour
                             isInteracting = false;
                             if (Gamepad.current != null)
                             {
-                                Gamepad.current.SetMotorSpeeds(2f, 2f);
+                                Gamepad.current.SetMotorSpeeds(0f, 0f);
                             }
                             Object.FindFirstObjectByType<CameraShake>().StopShake();
                             interactTimer = 0f;
