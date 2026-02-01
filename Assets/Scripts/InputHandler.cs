@@ -28,6 +28,8 @@ public class InputHandler : MonoBehaviour
     public float interactCooldownTimer = 3.0f;
     public float interactCooldown = 3.0f;
 
+    public GameObject objectToPickUp;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -134,6 +136,7 @@ public class InputHandler : MonoBehaviour
                         {
                             if (interactTimer == 0f)
                             {
+                                objectToPickUp = ph.GetClosest(gameObject);
                                 GameObject.Find("Player/Sprite").transform.position = new Vector3(GameObject.Find("Player/Sprite").transform.position.x, 2.3f, GameObject.Find("Player/Sprite").transform.position.z);
                                 isInteracting = true;
                                 if (Gamepad.current != null)
@@ -151,7 +154,7 @@ public class InputHandler : MonoBehaviour
                                 {
                                     Gamepad.current.SetMotorSpeeds(0f, 0f);
                                 }
-                                ph.PickupCombo(ph.GetClosest(gameObject));
+                                ph.PickupCombo(objectToPickUp);
                                 interactTimer = 0f;
                                 interactCooldownTimer = 0f;
                             }
@@ -168,6 +171,20 @@ public class InputHandler : MonoBehaviour
                             Object.FindFirstObjectByType<CameraShake>().StopShake();
                             interactTimer = 0f;
                         }
+                    }
+                }
+                else
+                {
+                    if (isInteracting)
+                    {
+                        GameObject.Find("Player/Sprite").transform.position = new Vector3(GameObject.Find("Player/Sprite").transform.position.x, 1.3f, GameObject.Find("Player/Sprite").transform.position.z);
+                        isInteracting = false;
+                        if (Gamepad.current != null)
+                        {
+                            Gamepad.current.SetMotorSpeeds(0f, 0f);
+                        }
+                        Object.FindFirstObjectByType<CameraShake>().StopShake();
+                        interactTimer = 0f;
                     }
                 }
 

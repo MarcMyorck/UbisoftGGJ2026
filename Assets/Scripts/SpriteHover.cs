@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class SpriteHover : MonoBehaviour
 {
-    public float amplitude = 0.2f; // how high it moves
-    public float frequency = 1f; // how fast it moves
+    public float amplitude = 0.05f; // how high it moves
+    public float frequency = 4f; // how fast it moves
     private Vector3 startPos; 
 
     void Start() 
@@ -15,5 +15,10 @@ public class SpriteHover : MonoBehaviour
     { 
         float yOffset = Mathf.Sin(Time.time * frequency) * amplitude;
         transform.localPosition = startPos + new Vector3(0, yOffset, 0); 
+    }
+
+    public void UpdateStartPosition()
+    {
+        startPos = transform.localPosition;
     }
 }

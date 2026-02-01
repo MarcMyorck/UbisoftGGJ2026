@@ -8,6 +8,7 @@ public class PlayerSpriteHandler : MonoBehaviour
     public Animator a;
     public Combat c;
     public GameObject face;
+    public SpriteHover faceHover;
 
     public Sprite s1;
     public Sprite s2;
@@ -27,6 +28,7 @@ public class PlayerSpriteHandler : MonoBehaviour
         a = GameObject.Find("Player/Sprite").GetComponent<Animator>();
         c = GameObject.Find("Player").GetComponent<Combat>();
         face = GameObject.Find("Player/Face");
+        faceHover = GameObject.Find("Player/Face").GetComponent<SpriteHover>();
     }
 
     // Update is called once per frame
@@ -54,6 +56,7 @@ public class PlayerSpriteHandler : MonoBehaviour
                 face.SetActive(true);
                 face.transform.localPosition = new Vector3(0, 1.5f, -0.1f);
                 face.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                faceHover.UpdateStartPosition();
                 break;
             case ("Tom"):
                 sr.sprite = s3;
@@ -62,6 +65,7 @@ public class PlayerSpriteHandler : MonoBehaviour
                 face.SetActive(true);
                 face.transform.localPosition = new Vector3(0, 3f, -0.25f);
                 face.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                faceHover.UpdateStartPosition();
                 break;
             case ("Tourabe"):
                 sr.sprite = s4;
@@ -70,6 +74,7 @@ public class PlayerSpriteHandler : MonoBehaviour
                 face.SetActive(true);
                 face.transform.localPosition = new Vector3(0.75f, 1f, -0.1f);
                 face.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+                faceHover.UpdateStartPosition();
                 break;
         }
     }
