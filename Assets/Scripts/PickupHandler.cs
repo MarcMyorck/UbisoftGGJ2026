@@ -52,4 +52,11 @@ public class PickupHandler : MonoBehaviour
         inside.Remove(pickup);
         Destroy(pickup);
     }
+
+    public void RevertCombo()
+    {
+        gameObject.GetComponent<Combat>().comboName = "Ghost";
+        gameObject.GetComponent<Combat>().AssignAttackCombo();
+        gameObject.GetComponent<Health>().currentHealth = gameObject.GetComponent<Health>().maxHealth;
+    }
 }

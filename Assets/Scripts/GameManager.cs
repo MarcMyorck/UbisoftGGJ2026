@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
         }
 }
 
-public void GameOver()
+    public void GameOver()
     {
         isGameOver = true;
         gameOverText.GetComponent<TMP_Text>().enabled = true;
@@ -53,7 +53,7 @@ public void GameOver()
 
     public void spawnEnemy()
     {
-        ei.SpawnNewEnemy(Random.Range(1,3), RandomPointOnNavMesh());
+        ei.SpawnNewEnemy(Random.Range(1,4), RandomPointOnNavMesh());
     }
 
     public Vector3 RandomPointOnNavMesh()

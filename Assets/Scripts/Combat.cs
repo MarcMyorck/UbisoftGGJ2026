@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Combat : MonoBehaviour
 {
+    PlayerSpriteHandler psh;
+
     public string comboName = "Ghost";
     public AttackComboStruct[] combo;
     public int currentComboStep = 0;
@@ -10,6 +12,7 @@ public class Combat : MonoBehaviour
     public float damageZoneDistance = 1.0f;
     public float attackTime = 0f;
     public float waitTimer = 0f;
+    public bool isPlayer = false;
 
     public Vector3 rotated45left;
     public Vector3 rotated45right;
@@ -17,7 +20,9 @@ public class Combat : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        psh = FindFirstObjectByType<PlayerSpriteHandler>();
         AssignAttackCombo();
+        damageZone.SetActive(false);
     }
 
     // Update is called once per frame
@@ -60,6 +65,7 @@ public class Combat : MonoBehaviour
                 {
                     if (currentComboStep + 1 == combo.Length)
                     {
+                        damageZone.SetActive(false);
                         damageZone.transform.position = transform.position;
                         isAttacking = false;
                         attackTime = 0f;
@@ -87,6 +93,7 @@ public class Combat : MonoBehaviour
     {
         if (!isAttacking)
         {
+            damageZone.SetActive(true);
             isAttacking = true;
 
             Vector3 forward = currentDirection.normalized;
@@ -131,6 +138,11 @@ public class Combat : MonoBehaviour
                     new AttackComboStruct("m", 0f, 2.0f)
                 };
                 break;
+        }
+
+        if (isPlayer)
+        {
+            psh.changeSprite();
         }
     }
 }

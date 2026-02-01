@@ -25,6 +25,7 @@ public class Health : MonoBehaviour
         if(invincibilityTimer < invincibilityTime)
         {
             invincibilityTimer += Time.deltaTime;
+            //GetComponent<Renderer>().enabled = !GetComponent<Renderer>().enabled;
         }
     }
 
@@ -57,9 +58,17 @@ public class Health : MonoBehaviour
                 {
                     if (tag == "Enemy")
                     {
-                        GameObject inst = Instantiate(pickupPrefab, gameObject.transform.position, Quaternion.identity);
-                        inst.GetComponent<Pickup>().comboName = gameObject.GetComponent<Combat>().comboName;
-                        Destroy(gameObject);
+                        if (player.GetComponent<Combat>().comboName == "Ghost")
+                        {
+                            GameObject inst = Instantiate(pickupPrefab, gameObject.transform.position, Quaternion.identity);
+                            inst.GetComponent<Pickup>().comboName = gameObject.GetComponent<Combat>().comboName;
+                            Destroy(gameObject);
+                        } 
+                        else
+                        {
+                            Destroy(gameObject);
+                        }
+                        
                     }
                 }
             }

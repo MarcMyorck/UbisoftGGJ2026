@@ -26,6 +26,15 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (transform.forward.x > 0)
+        {
+            gameObject.GetComponentInChildren<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            gameObject.GetComponentInChildren<SpriteRenderer>().flipX = false;
+        }
+
         if (!c.isAttacking)
         {
             enemyAnimator.SetBool("IsAttacking", false);

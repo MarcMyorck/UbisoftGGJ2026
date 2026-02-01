@@ -31,14 +31,20 @@ public class EnemyInstantiator : MonoBehaviour
             case 1:
                 inst.GetComponentInChildren<Animator>().runtimeAnimatorController = ac1;
                 inst.GetComponent<Combat>().comboName = "Bat";
+                Transform child = inst.transform.GetChild(0); 
+                child.position = new Vector3(child.position.x, 0.75f, child.position.z);
                 break;
             case 2:
                 inst.GetComponentInChildren<Animator>().runtimeAnimatorController = ac2;
                 inst.GetComponent<Combat>().comboName = "Tom";
+                child = inst.transform.GetChild(0);
+                child.position = new Vector3(child.position.x, 2.25f, child.position.z);
                 break;
             case 3:
                 inst.GetComponentInChildren<Animator>().runtimeAnimatorController = ac3;
                 inst.GetComponent<Combat>().comboName = "Tourabe";
+                child = inst.transform.GetChild(0);
+                child.position = new Vector3(child.position.x, 0.75f, child.position.z);
                 break;
         }
         inst.GetComponent<Combat>().AssignAttackCombo();

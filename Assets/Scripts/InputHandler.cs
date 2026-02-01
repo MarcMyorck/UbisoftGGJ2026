@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -23,11 +24,14 @@ public class InputHandler : MonoBehaviour
     public float interactTimer = 0f;
     public float interactDelay = 3.0f;
 
+    public float interactCooldownTimer = 3.0f;
+    public float interactCooldown = 3.0f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         pm = GetComponent<PlayerMovement>();
-        c = GetComponent<Combat>();
+        c = GameObject.Find("Player").GetComponent<Combat>();
         ph = GetComponent<PickupHandler>();
         sr = GameObject.Find("Player/Sprite").GetComponent<SpriteRenderer>();
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -98,45 +102,72 @@ public class InputHandler : MonoBehaviour
         }
 
         // Interact
-        if (!pm.isDashing && !c.isAttacking)
-        { 
-            if (ph.inside?.Any() == true)
+        if (interactCooldownTimer < interactCooldown)
+        {
+            interactCooldownTimer += Time.deltaTime;
+        }
+
+        if (interactCooldownTimer >= interactCooldown)
+        {
+            if (playerAnimator.GetBool("IsInteractingBackwards") == true)
             {
-                if (interact1Action.IsPressed() && interact2Action.IsPressed())
+                playerAnimator.SetBool("IsInteractingBackwards", false);
+                GameObject.Find("Player/Sprite").transform.position = new Vector3(GameObject.Find("Player/Sprite").transform.position.x, 1.3f, GameObject.Find("Player/Sprite").transform.position.z);
+            }
+            if (interact1Action.IsPressed() && interact2Action.IsPressed() && c.comboName != "Ghost")
+            {
+                ph.RevertCombo();
+                playerAnimator.SetBool("IsInteractingBackwards", true);
+                interactCooldownTimer = 0f;
+                GameObject.Find("Player/Sprite").transform.position = new Vector3(GameObject.Find("Player/Sprite").transform.position.x, 2.3f, GameObject.Find("Player/Sprite").transform.position.z);
+            }
+            else
+            {
+                if (!pm.isDashing && !c.isAttacking && c.comboName == "Ghost")
                 {
-                    if (interactTimer == 0f)
+                    if (ph.inside?.Any() == true)
                     {
-                        isInteracting = true;
-                        Gamepad.current.SetMotorSpeeds(2f, 2f);
-                        Object.FindFirstObjectByType<CameraShake>().Shake();
-                    }
-                    interactTimer += Time.deltaTime;
-                    if (interactTimer >= interactDelay)
-                    {
-                        isInteracting = false;
-                        Gamepad.current.SetMotorSpeeds(0f, 0f);
-                        ph.PickupCombo(ph.GetClosest(gameObject));
-                        interactTimer = 0f;
+                        if (interact1Action.IsPressed() && interact2Action.IsPressed())
+                        {
+                            if (interactTimer == 0f)
+                            {
+                                GameObject.Find("Player/Sprite").transform.position = new Vector3(GameObject.Find("Player/Sprite").transform.position.x, 2.3f, GameObject.Find("Player/Sprite").transform.position.z);
+                                isInteracting = true;
+                                //Gamepad.current.SetMotorSpeeds(2f, 2f);
+                                Object.FindFirstObjectByType<CameraShake>().Shake();
+                            }
+                            interactTimer += Time.deltaTime;
+                            if (interactTimer >= interactDelay)
+                            {
+                                GameObject.Find("Player/Sprite").transform.position = new Vector3(GameObject.Find("Player/Sprite").transform.position.x, 1.3f, GameObject.Find("Player/Sprite").transform.position.z);
+                                isInteracting = false;
+                                //Gamepad.current.SetMotorSpeeds(0f, 0f);
+                                ph.PickupCombo(ph.GetClosest(gameObject));
+                                interactTimer = 0f;
+                                interactCooldownTimer = 0f;
+                            }
+                        }
+
+                        if (!(interact1Action.IsPressed() && interact2Action.IsPressed()) && interactTimer > 0f)
+                        {
+                            GameObject.Find("Player/Sprite").transform.position = new Vector3(GameObject.Find("Player/Sprite").transform.position.x, 1.3f, GameObject.Find("Player/Sprite").transform.position.z);
+                            isInteracting = false;
+                            //Gamepad.current.SetMotorSpeeds(0f, 0f);
+                            Object.FindFirstObjectByType<CameraShake>().StopShake();
+                            interactTimer = 0f;
+                        }
                     }
                 }
 
-                if (!(interact1Action.IsPressed() && interact2Action.IsPressed()) && interactTimer > 0f)
+                if (isInteracting)
                 {
-                    isInteracting = false;
-                    Gamepad.current.SetMotorSpeeds(0f, 0f);
-                    Object.FindFirstObjectByType<CameraShake>().StopShake();
-                    interactTimer = 0f;
+                    playerAnimator.SetBool("IsInteracting", true);
+                }
+                else
+                {
+                    playerAnimator.SetBool("IsInteracting", false);
                 }
             }
-        }
-
-        if (isInteracting)
-        {
-            playerAnimator.SetBool("IsInteracting", true);
-        }
-        else
-        {
-            playerAnimator.SetBool("IsInteracting", false);
         }
     }
 }

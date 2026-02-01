@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 playerVelocity = new Vector3(0, -2f, 0);
 
-        if (dash && currentDashCooldown >= dashCooldown)
+        if (dash && GameObject.Find("Player").GetComponent<Combat>().comboName == "Ghost" && currentDashCooldown >= dashCooldown)
         {
             currentMoveSpeed = moveSpeed * dashSpeedMultiplier;
             currentDashCooldown = 0f;
