@@ -9,6 +9,7 @@ public class PlayerSpriteHandler : MonoBehaviour
     public Combat c;
     public GameObject face;
     public SpriteHover faceHover;
+    public SoundeffectManager sm;
 
     public Sprite s1;
     public Sprite s2;
@@ -29,6 +30,7 @@ public class PlayerSpriteHandler : MonoBehaviour
         c = GameObject.Find("Player").GetComponent<Combat>();
         face = GameObject.Find("Player/Face");
         faceHover = GameObject.Find("Player/Face").GetComponent<SpriteHover>();
+        sm = GameObject.Find("SoundeffectManager").GetComponent<SoundeffectManager>();
     }
 
     // Update is called once per frame
@@ -45,6 +47,7 @@ public class PlayerSpriteHandler : MonoBehaviour
                 sr.sprite = s1;
                 a.runtimeAnimatorController = anim1 as RuntimeAnimatorController;
                 a.SetBool("IsInteractingBackwards", true);
+                sm.PlayInteractSound();
                 GameObject.Find("Player/Sprite").transform.position = new Vector3(GameObject.Find("Player/Sprite").transform.position.x, 1.4f, GameObject.Find("Player/Sprite").transform.position.z); GameObject.Find("Player/Sprite").transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
                 face.SetActive(false);
                 break;

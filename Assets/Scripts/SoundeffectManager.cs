@@ -24,12 +24,12 @@ public class SoundeffectManager : MonoBehaviour
 
     public void PlayDashSound()
     {
-        playerAudioSource.PlayOneShot(dashS);
+        playerAudioSource.PlayOneShot(dashS, 1.5f);
     }
 
     public void PlayInteractSound()
     {
-        playerAudioSource.PlayOneShot(interactS);
+        playerAudioSource.PlayOneShot(interactS, 1.5f);
     }
 
     public void StopInteractSound()
@@ -44,16 +44,16 @@ public class SoundeffectManager : MonoBehaviour
         switch (rndm)
         {
             case 1:
-                playerAudioSource.PlayOneShot(hit1S);
+                playerAudioSource.PlayOneShot(hit1S, 1.5f);
                 break;
             case 2:
-                playerAudioSource.PlayOneShot(hit2S);
+                playerAudioSource.PlayOneShot(hit2S, 1.5f);
                 break;
             case 3:
-                playerAudioSource.PlayOneShot(hit3S);
+                playerAudioSource.PlayOneShot(hit3S, 1.5f);
                 break;
             default:
-                playerAudioSource.PlayOneShot(hit1S);
+                playerAudioSource.PlayOneShot(hit1S, 1.5f);
                 break;
         }
     }

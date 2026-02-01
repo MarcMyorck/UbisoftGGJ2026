@@ -204,5 +204,19 @@ public class InputHandler : MonoBehaviour
                 }
             }
         }
+
+        if (!(interact1Action.IsPressed() && interact2Action.IsPressed()) && isInteracting && playerAnimator.GetBool("IsInteracting"))
+        {
+            sm.StopInteractSound();
+            GameObject.Find("Player/Sprite").transform.position = new Vector3(GameObject.Find("Player/Sprite").transform.position.x, 1.3f, GameObject.Find("Player/Sprite").transform.position.z);
+            isInteracting = false;
+            if (Gamepad.current != null)
+            {
+                Gamepad.current.SetMotorSpeeds(0f, 0f);
+            }
+            Object.FindFirstObjectByType<CameraShake>().StopShake();
+            interactTimer = 0f;
+            playerAnimator.SetBool("IsInteracting", false);
+        }
     }
 }
