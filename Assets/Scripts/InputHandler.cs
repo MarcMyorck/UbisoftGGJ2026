@@ -10,6 +10,7 @@ public class InputHandler : MonoBehaviour
     Combat c;
     PickupHandler ph;
     SpriteRenderer sr;
+    SpriteRenderer srFace;
     GameManager gm;
 
     Animator playerAnimator;
@@ -34,6 +35,7 @@ public class InputHandler : MonoBehaviour
         c = GameObject.Find("Player").GetComponent<Combat>();
         ph = GetComponent<PickupHandler>();
         sr = GameObject.Find("Player/Sprite").GetComponent<SpriteRenderer>();
+        srFace = GameObject.Find("Player/Face").GetComponent<SpriteRenderer>();
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         playerAnimator = GameObject.Find("Player/Sprite").GetComponent<Animator>();
@@ -62,12 +64,14 @@ public class InputHandler : MonoBehaviour
             if (moveValue.x > 0)
             {
                 sr.flipX = true;
+                srFace.flipX = true;
             }
             else
             {
                 if (moveValue.x < 0)
                 {
                     sr.flipX = false;
+                    srFace.flipX = false;
                 }
             }
             playerAnimator.SetBool("IsWalking", true);
