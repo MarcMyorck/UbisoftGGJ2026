@@ -5,6 +5,7 @@ using UnityEngine.InputSystem.XR;
 public class PlayerMovement : MonoBehaviour
 {
     CharacterController cc;
+    public SoundeffectManager sm;
 
     private float currentMoveSpeed = 10.0f;
     public float moveSpeed = 10.0f;
@@ -19,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         cc = GetComponent<CharacterController>();
+        sm = GameObject.Find("SoundeffectManager").GetComponent<SoundeffectManager>();
     }
 
     // Update is called once per frame
@@ -41,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (dash && GameObject.Find("Player").GetComponent<Combat>().comboName == "Ghost" && currentDashCooldown >= dashCooldown)
         {
+            sm.PlayDashSound();
             currentMoveSpeed = moveSpeed * dashSpeedMultiplier;
             currentDashCooldown = 0f;
             isDashing = true;

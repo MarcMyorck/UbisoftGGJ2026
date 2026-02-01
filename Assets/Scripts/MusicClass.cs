@@ -2,10 +2,22 @@ using UnityEngine;
 
 public class MusicClass : MonoBehaviour
 {
+    private static MusicClass instance;
     private AudioSource _audioSource;
+
     private void Awake()
     {
-        DontDestroyOnLoad(transform.gameObject);
+        // If an instance already exists, destroy this duplicate 
+        if (instance != null && instance != this) 
+        { 
+            Destroy(gameObject); 
+            return; 
+        } 
+        
+        // Otherwise, this becomes the main instance 
+        instance = this; 
+        DontDestroyOnLoad(gameObject); 
+
         _audioSource = GetComponent<AudioSource>();
     }
 

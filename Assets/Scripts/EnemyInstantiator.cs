@@ -1,12 +1,11 @@
 using Unity.VisualScripting;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class EnemyInstantiator : MonoBehaviour
 {
-    public AnimatorController ac1;
-    public AnimatorController ac2;
-    public AnimatorController ac3;
+    public RuntimeAnimatorController ac1;
+    public RuntimeAnimatorController ac2;
+    public RuntimeAnimatorController ac3;
 
     public GameObject enemyPrefab;
 
@@ -29,19 +28,19 @@ public class EnemyInstantiator : MonoBehaviour
         switch (number)
         {
             case 1:
-                inst.GetComponentInChildren<Animator>().runtimeAnimatorController = ac1;
+                inst.GetComponentInChildren<Animator>().runtimeAnimatorController = ac1 as RuntimeAnimatorController;
                 inst.GetComponent<Combat>().comboName = "Bat";
                 Transform child = inst.transform.GetChild(0); 
                 child.position = new Vector3(child.position.x, 0.75f, child.position.z);
                 break;
             case 2:
-                inst.GetComponentInChildren<Animator>().runtimeAnimatorController = ac2;
+                inst.GetComponentInChildren<Animator>().runtimeAnimatorController = ac2 as RuntimeAnimatorController;
                 inst.GetComponent<Combat>().comboName = "Tom";
                 child = inst.transform.GetChild(0);
                 child.position = new Vector3(child.position.x, 2.25f, child.position.z);
                 break;
             case 3:
-                inst.GetComponentInChildren<Animator>().runtimeAnimatorController = ac3;
+                inst.GetComponentInChildren<Animator>().runtimeAnimatorController = ac3 as RuntimeAnimatorController;
                 inst.GetComponent<Combat>().comboName = "Tourabe";
                 child = inst.transform.GetChild(0);
                 child.position = new Vector3(child.position.x, 0.75f, child.position.z);

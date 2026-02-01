@@ -3,6 +3,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class InputHandler : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class InputHandler : MonoBehaviour
     InputAction attackAction;
     InputAction interact1Action;
     InputAction interact2Action;
+    InputAction leaveAction;
 
     public bool isInteracting = false;
     public float interactTimer = 0f;
@@ -49,6 +51,7 @@ public class InputHandler : MonoBehaviour
         attackAction = InputSystem.actions.FindAction("Attack");
         interact1Action = InputSystem.actions.FindAction("Interact1");
         interact2Action = InputSystem.actions.FindAction("Interact2");
+        leaveAction = InputSystem.actions.FindAction("Leave");
     }
 
     // Update is called once per frame
@@ -217,6 +220,12 @@ public class InputHandler : MonoBehaviour
             Object.FindFirstObjectByType<CameraShake>().StopShake();
             interactTimer = 0f;
             playerAnimator.SetBool("IsInteracting", false);
+        }
+
+        // Leave
+        if (leaveAction.IsPressed())
+        {
+            SceneManager.LoadScene("MainMenuScene");
         }
     }
 }

@@ -5748,7 +5748,7 @@ MonoBehaviour:
   gameOverDelay: 5
   gameOverImage: {fileID: 1848966084}
   enemySpawnTimer: 0
-  enemySpawnDelay: 15
+  enemySpawnDelay: 10
 --- !u!4 &590350873
 Transform:
   m_ObjectHideFlags: 0
@@ -13491,6 +13491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43324abb7d630a74da2a7ffb67a2ed16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  sm: {fileID: 0}
   moveSpeed: 10
   isDashing: 0
   dashSpeedMultiplier: 2
@@ -19580,10 +19581,6 @@ PrefabInstance:
     - target: {fileID: 4349054019516020775, guid: 8ddbe2b15658fa84c8f792849aae6e10, type: 3}
       propertyPath: m_Name
       value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 4349054019516020775, guid: 8ddbe2b15658fa84c8f792849aae6e10, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

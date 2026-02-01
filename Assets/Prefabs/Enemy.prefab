@@ -499,6 +499,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   gm: {fileID: 0}
   player: {fileID: 0}
+  ph: {fileID: 0}
+  ih: {fileID: 0}
   pickupPrefab: {fileID: 5532629590921945159, guid: e6ab302a7ba14334c95efede6edb481c, type: 3}
   currentHealth: 1
   maxHealth: 1
