@@ -12,6 +12,7 @@ public class MainMenuManager : MonoBehaviour
     {
         start.onClick.AddListener(StartGame);
         quit.onClick.AddListener(QuitGame);
+        GameObject.FindGameObjectWithTag("Music").GetComponent<MusicClass>().PlayMusic();
     }
 
     void StartGame()

@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     {
         ei = GetComponent<EnemyInstantiator>();
         playerObject = Object.FindFirstObjectByType<PlayerMovement>().gameObject;
+        GameObject.FindGameObjectWithTag("Music").GetComponent<MusicClass>().PlayMusic();
     }
 
     // Update is called once per frame

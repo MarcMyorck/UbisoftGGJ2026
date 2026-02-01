@@ -10,6 +10,7 @@ public class TutorialManager : MonoBehaviour
     void Start()
     {
         start.onClick.AddListener(StartGame);
+        GameObject.FindGameObjectWithTag("Music").GetComponent<MusicClass>().PlayMusic();
     }
 
     void StartGame()
