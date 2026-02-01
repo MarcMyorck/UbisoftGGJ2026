@@ -8,7 +8,9 @@ public class SpriteHover : MonoBehaviour
 
     void Start() 
     { 
-        startPos = transform.localPosition; 
+        startPos = transform.localPosition;
+        amplitude = Random.Range(0.02f, 0.08f);
+        frequency = Random.Range(3f, 5f);
     } 
     
     void Update() 

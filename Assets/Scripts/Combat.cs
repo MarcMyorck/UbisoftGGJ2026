@@ -3,6 +3,7 @@ using UnityEngine;
 public class Combat : MonoBehaviour
 {
     PlayerSpriteHandler psh;
+    SoundeffectManager sm;
 
     public string comboName = "Ghost";
     public AttackComboStruct[] combo;
@@ -21,6 +22,8 @@ public class Combat : MonoBehaviour
     void Start()
     {
         psh = FindFirstObjectByType<PlayerSpriteHandler>();
+        sm = GameObject.Find("SoundeffectManager").GetComponent<SoundeffectManager>();
+
         AssignAttackCombo();
         damageZone.SetActive(false);
     }
@@ -93,6 +96,7 @@ public class Combat : MonoBehaviour
     {
         if (!isAttacking)
         {
+            sm.PlayRandomHitSound();
             damageZone.SetActive(true);
             isAttacking = true;
 

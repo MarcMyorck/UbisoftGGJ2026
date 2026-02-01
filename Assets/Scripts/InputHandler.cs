@@ -12,6 +12,7 @@ public class InputHandler : MonoBehaviour
     SpriteRenderer sr;
     SpriteRenderer srFace;
     GameManager gm;
+    SoundeffectManager sm;
 
     Animator playerAnimator;
 
@@ -39,6 +40,7 @@ public class InputHandler : MonoBehaviour
         sr = GameObject.Find("Player/Sprite").GetComponent<SpriteRenderer>();
         srFace = GameObject.Find("Player/Face").GetComponent<SpriteRenderer>();
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        sm = GameObject.Find("SoundeffectManager").GetComponent<SoundeffectManager>();
 
         playerAnimator = GameObject.Find("Player/Sprite").GetComponent<Animator>();
 
@@ -136,6 +138,7 @@ public class InputHandler : MonoBehaviour
                         {
                             if (interactTimer == 0f)
                             {
+                                sm.PlayInteractSound();
                                 objectToPickUp = ph.GetClosest(gameObject);
                                 GameObject.Find("Player/Sprite").transform.position = new Vector3(GameObject.Find("Player/Sprite").transform.position.x, 2.3f, GameObject.Find("Player/Sprite").transform.position.z);
                                 isInteracting = true;
@@ -148,6 +151,7 @@ public class InputHandler : MonoBehaviour
                             interactTimer += Time.deltaTime;
                             if (interactTimer >= interactDelay)
                             {
+                                sm.StopInteractSound();
                                 GameObject.Find("Player/Sprite").transform.position = new Vector3(GameObject.Find("Player/Sprite").transform.position.x, 1.3f, GameObject.Find("Player/Sprite").transform.position.z);
                                 isInteracting = false;
                                 if (Gamepad.current != null)
@@ -162,6 +166,7 @@ public class InputHandler : MonoBehaviour
 
                         if (!(interact1Action.IsPressed() && interact2Action.IsPressed()) && interactTimer > 0f)
                         {
+                            sm.StopInteractSound();
                             GameObject.Find("Player/Sprite").transform.position = new Vector3(GameObject.Find("Player/Sprite").transform.position.x, 1.3f, GameObject.Find("Player/Sprite").transform.position.z);
                             isInteracting = false;
                             if (Gamepad.current != null)
@@ -177,6 +182,7 @@ public class InputHandler : MonoBehaviour
                 {
                     if (isInteracting)
                     {
+                        sm.StopInteractSound();
                         GameObject.Find("Player/Sprite").transform.position = new Vector3(GameObject.Find("Player/Sprite").transform.position.x, 1.3f, GameObject.Find("Player/Sprite").transform.position.z);
                         isInteracting = false;
                         if (Gamepad.current != null)
