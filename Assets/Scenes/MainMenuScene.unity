@@ -499,7 +499,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuManager
   start: {fileID: 176383866}
   quit: {fileID: 1418964670}
-  cursorTexture: {fileID: 2800000, guid: eed83580e0356ac48aaffeea0d740e99, type: 3}
+  cursorTexture: {fileID: 2800000, guid: 426b539637ecbf44a8a9af46bce3255d, type: 3}
 --- !u!4 &724726454
 Transform:
   m_ObjectHideFlags: 0
