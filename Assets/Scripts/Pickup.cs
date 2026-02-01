@@ -26,7 +26,7 @@ public class Pickup : MonoBehaviour
         ei = FindFirstObjectByType<EnemyInstantiator>();
         ih = FindFirstObjectByType<InputHandler>();
         transform.rotation = Quaternion.Euler(90f, 0f, 0f);
-        transform.GetChild(0).position = new Vector3(transform.position.x, transform.position.y + 3, transform.position.z);
+        transform.GetChild(0).position = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
         transform.GetChild(0).rotation = Quaternion.Euler(0f, 0f, 0f);
 
         switch (comboName)
