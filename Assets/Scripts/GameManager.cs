@@ -9,10 +9,12 @@ public class GameManager : MonoBehaviour
     EnemyInstantiator ei;
 
     GameObject playerObject;
+    Animator playerAnimator;
 
     public bool isGameOver = false;
     public float gameOverTimer = 0f;
-    public float gameOverDelay = 5.0f;
+    public float gameOverDelayImage = 5.0f;
+    public float gameOverDelayReturn = 10.0f;
     public GameObject gameOverImage;
 
     public float enemySpawnTimer = 0f;
@@ -32,7 +34,12 @@ public class GameManager : MonoBehaviour
         if (isGameOver)
         {
             gameOverTimer += Time.deltaTime;
-            if (gameOverTimer >= gameOverDelay)
+            if (gameOverTimer >= gameOverDelayImage && gameOverImage.GetComponent<Image>().enabled == false)
+            {
+                gameOverImage.GetComponent<Image>().enabled = true;
+                GameObject.Find("Player/Sprite").GetComponent<SpriteRenderer>().enabled = false;
+            }
+            if (gameOverTimer >= gameOverDelayReturn)
             {
                 SceneManager.LoadScene("MainMenuScene");
             }
@@ -48,9 +55,12 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        if (!isGameOver)
+        {
+            playerAnimator = GameObject.Find("Player/Sprite").GetComponent<Animator>();
+            playerAnimator.SetBool("IsDead", true);
+        }
         isGameOver = true;
-        gameOverImage.GetComponent<Image>().enabled = true;
-        GameObject.Find("Player/Sprite").GetComponent<SpriteRenderer>().enabled = false;
     }
 
     public void spawnEnemy()

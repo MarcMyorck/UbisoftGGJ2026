@@ -21,7 +21,6 @@ public class PlayerSpriteHandler : MonoBehaviour
     public RuntimeAnimatorController anim3;
     public RuntimeAnimatorController anim4;
 
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

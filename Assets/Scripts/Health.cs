@@ -20,7 +20,7 @@ public class Health : MonoBehaviour
         gm = Object.FindFirstObjectByType<GameManager>();
         player = GameObject.Find("Player");
         ph = Object.FindFirstObjectByType<PickupHandler>();
-        ih = Object.FindFirstObjectByType<InputHandler>();  
+        ih = Object.FindFirstObjectByType<InputHandler>();
     }
 
     // Update is called once per frame

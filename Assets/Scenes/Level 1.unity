@@ -5745,7 +5745,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   isGameOver: 0
   gameOverTimer: 0
-  gameOverDelay: 5
+  gameOverDelayImage: 5
+  gameOverDelayReturn: 10
   gameOverImage: {fileID: 1848966084}
   enemySpawnTimer: 0
   enemySpawnDelay: 10
